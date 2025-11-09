@@ -1,0 +1,50 @@
+-- HC12T9 : Lecture et analyse d'un fichier
+-- Auteur : Olivier
+-- Écrit pour moi-même afin de me souvenir de comment lire un fichier
+-- et analyser un peu son contenu en Haskell.
+-- Ici, je simule le fichier pour pouvoir tester en ligne.
+
+import Data.Time
+
+main :: IO ()
+main = do
+    -- Je commence par noter l'heure à laquelle j'exécute ce code
+    putStrLn "----------------------------------------"
+    putStrLn "📘 Mon petit programme Haskell"
+    putStrLn "Lecture et analyse d'un fichier"
+    putStrLn "----------------------------------------"
+
+    now <- getCurrentTime
+    putStrLn $ "⏰ Exécuté le : " ++ show now
+    putStrLn ""
+
+    -- Comme je n'ai pas de fichier réel ici, je crée un contenu simulé
+    let monFichier = "monfichier.txt"
+    let contenu = unlines
+          [ "Salut Olivier !"
+          , "Ceci est mon fichier simulé pour tester Haskell."
+          , "Je veux m'assurer que je peux lire le contenu et compter les mots et lignes."
+          , "Tout fonctionne comme si c'était un vrai fichier."
+          , "C'est pratique pour tester rapidement."
+          , "Amuse-toi bien à modifier ce texte ou à tester autre chose !"
+          ]
+
+    putStrLn ("📂 Lecture du fichier : " ++ monFichier)
+    putStrLn "\n--- Contenu ---"
+    putStrLn contenu
+
+    -- Je calcule quelques statistiques rapides pour moi-même
+    let nbLignes = length (lines contenu)
+    let nbMots   = length (words contenu)
+    let nbChars  = length contenu
+
+    putStrLn "----------------------------"
+    putStrLn $ "Nombre de lignes : " ++ show nbLignes
+    putStrLn $ "Nombre de mots   : " ++ show nbMots
+    putStrLn $ "Nombre de caractères : " ++ show nbChars
+    putStrLn "----------------------------"
+
+    -- Et je fais quelques vérifications pour moi-même
+    putStrLn "\n🔎 Vérifications rapides :"
+    if "Haskell" `elem` words contenu
+        then putStrLn "✅ Le mot 'Haskell' est bien présent, comme je m'y attendais."
